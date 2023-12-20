@@ -5,6 +5,15 @@ import Main from './components/Main/Main'
 import beers from './data/Beers';
 import Card from './components/Card/Card';
 
+//MY notes:
+//first_brewed before 2010
+//high acidity ph lowerthan 4
+//high alcohol abv > 6%
+
+//I need to move card to Main componenet. Fetch api from here, and instead of 
+// of working with Beer data. i work wth re data response of the api.
+
+//get data from api
 
 
 function App() {
@@ -13,9 +22,20 @@ const [highABVFilter, setHighABVFilert] = useState('');
 const [classicFilter, setClassicFilter] = useState('');
 const [highAcidityFilter, setHighAcidityFilter] = useState('');
 
+
 const handleInput = (event: FormEvent<HTMLInputElement>) => {
-  const nameInput = event.currentTarget.value.toLowerCase();
+switch (event) {
+    case value:
+        
+        break;
+
+    default:
+        break;
+}
+
+ const nameInput = event.currentTarget.value.toLowerCase();
   setSearchName(nameInput);
+
 
 
 };
@@ -28,6 +48,12 @@ return (
     <div className='container'>
       <div>
         <Navbar searchName={searchName} handleInput={handleInput} />
+        
+      </div>
+      <div>
+
+
+        <Main filteredBeers={filteredBeers} />
         {filteredBeers.map((beer) => (
           <Card
             key={beer.name}
@@ -36,9 +62,6 @@ return (
             description={beer.description}
           />
         ))}
-      </div>
-      <div>
-        <Main />
       </div>
     </div>
   );

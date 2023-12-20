@@ -1,8 +1,10 @@
 import './Main.scss'
 
+
 const Main = () => {
   return (
-    <div className='main'> Main
+    <div className='main'> 
+    
     </div>
   )
 }

@@ -14,7 +14,7 @@ const Navbar = ({ searchName, handleInput }: NavbarProps) => {
   return (
     <div className='navbar'>
       <div>
-        <SearchBox searchName={searchName} onChange={handleInput} />
+        <SearchBox searchName={searchName} handleInput={handleInput} />
       </div>
       <div>
         <FilterList handleInput={handleInput} />
