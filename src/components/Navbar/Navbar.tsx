@@ -23,7 +23,7 @@ beer.name.toLowerCase().includes(searchName)
       <SearchBox searchName={searchName} onChange={handleSearchByNameInput} />
       {filteredBeers.map((beer) => (
         <Card
-          key={beer.name} // Adding a key to each Card component
+          key={beer.name} 
           name={beer.name}
           image_url={beer.image_url}
           description={beer.description}
