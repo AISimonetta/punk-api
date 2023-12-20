@@ -1,36 +1,26 @@
-import { useState, FormEvent } from 'react';
 import './Navbar.scss'
 import '../SearchBox/SearchBox'
 import SearchBox from '../SearchBox/SearchBox'
-import beers from '../../data/Beers';
-import Card from '../Card/Card.tsx'
+import FilterList from '../FilterList/FilterList';
+import { FormEventHandler } from 'react';
 
 
-const Navbar = () => {
-
-const [searchName, setSearchName] = useState('');
-
-const handleSearchByNameInput = (event: FormEvent<HTMLInputElement>) => {
-  const nameInput = event.currentTarget.value.toLowerCase();
-  setSearchName(nameInput);
+type NavbarProps = {
+  searchName: string;
+  handleInput: FormEventHandler<HTMLInputElement>;
 };
 
-const filteredBeers = beers.filter((beer) =>
-beer.name.toLowerCase().includes(searchName)
-);
+const Navbar = ({ searchName, handleInput }: NavbarProps) => {
   return (
     <div className='navbar'>
-      <SearchBox searchName={searchName} onChange={handleSearchByNameInput} />
-      {filteredBeers.map((beer) => (
-        <Card
-          key={beer.name} 
-          name={beer.name}
-          image_url={beer.image_url}
-          description={beer.description}
-        />
-      ))}
+      <div>
+        <SearchBox searchName={searchName} onChange={handleInput} />
+      </div>
+      <div>
+        <FilterList handleInput={handleInput} />
+      </div>
     </div>
   );
-}
+};
 
-export default Navbar
+export default Navbar;
