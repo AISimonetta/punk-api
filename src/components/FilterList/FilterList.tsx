@@ -13,6 +13,7 @@ type FilterListProps = {
 const FilterList = ({ handleInput }: FilterListProps) => {
   return (
     <div>
+
       <div>
         <label htmlFor="highABV">High Alcohol / ABV%:</label>
         <input
@@ -42,6 +43,7 @@ const FilterList = ({ handleInput }: FilterListProps) => {
             onChange={handleInput}
         />
       </div>
+
     </div>
   );
 };

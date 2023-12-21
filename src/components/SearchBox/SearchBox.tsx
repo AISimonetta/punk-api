@@ -5,11 +5,12 @@ type SearchBoxProps = {
     searchName: string;
     handleInput: FormEventHandler<HTMLInputElement>;
   }
-  
+
 const SearchBox = ({ searchName, handleInput }: SearchBoxProps) => {
   return (
     <div className="searchByName">
       <input
+        name="searchName"
         type="text"
         value={searchName}
         onChange={handleInput}

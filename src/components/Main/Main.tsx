@@ -7,18 +7,22 @@ type MainProps = {
   filteredBeers: Beer[];
 };
 
-
-const Main = ({ filteredBeers } : MainProps) => {
+//If there are not matching cards to display after the user applied the filters, return <p>No matching results.</p>
+const Main = ({ filteredBeers }: MainProps) => {
   return (
-    <div className='main'>
-      {filteredBeers.map((beer) => (
-        <Card
-          key={beer.name}
-          name={beer.name}
-          image_url={beer.image_url}
-          description={beer.description}
-        />
-      ))}
+    <div className='card__container'>
+      {filteredBeers.length > 0 ? (
+        filteredBeers.map((beer) => (
+          <Card
+            key={beer.name}
+            name={beer.name}
+            image_url={beer.image_url}
+            description={beer.description}
+          />
+        ))
+      ) : (
+        <p>No matching results.</p>
+      )}
     </div>
   );
 };

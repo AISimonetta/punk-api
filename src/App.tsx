@@ -18,6 +18,8 @@ function App() {
     const data: Beer[] = await response.json();
     setLoadedBeers(data);
   };
+
+//function to handle inputs/states
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const { name, checked, value } = event.currentTarget;
 
@@ -52,7 +54,7 @@ function App() {
 
   return (
     <div className='container'>
-      <div>
+      <div className='navbar'>
         <Navbar
           searchName={searchName}
           handleInput={handleInput}
@@ -61,7 +63,7 @@ function App() {
           highAcidityFilter={highAcidityFilter}
         />
       </div>
-      <div>
+      <div className='main'>
         <Main filteredBeers={filteredBeers} />
       </div>
     </div>
