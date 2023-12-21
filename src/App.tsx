@@ -1,70 +1,71 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import Main from './components/Main/Main'
-import beers from './data/Beers';
-import Card from './components/Card/Card';
-
-//MY notes:
-//first_brewed before 2010
-//high acidity ph lowerthan 4
-//high alcohol abv > 6%
-
-//I need to move card to Main componenet. Fetch api from here, and instead of 
-// of working with Beer data. i work wth re data response of the api.
-
-//get data from api
-
+import { Beer } from './types/types';
 
 function App() {
-const [searchName, setSearchName] = useState('');
-const [highABVFilter, setHighABVFilert] = useState('');
-const [classicFilter, setClassicFilter] = useState('');
-const [highAcidityFilter, setHighAcidityFilter] = useState('');
+  const [loadedBeers, setLoadedBeers] = useState<Beer[]>([]);
+  const [searchName, setSearchName] = useState('');
+  const [highABVFilter, setHighABVFilter] = useState(false);
+  const [classicFilter, setClassicFilter] = useState(false);
+  const [highAcidityFilter, setHighAcidityFilter] = useState(false);
 
+//Function to call  the api 
+  const getBeer = async () => {
+    const url = 'https://api.punkapi.com/v2/beers';
+    const response = await fetch(url);
+    const data: Beer[] = await response.json();
+    setLoadedBeers(data);
+  };
+  const handleInput = (event: FormEvent<HTMLInputElement>) => {
+    const { name, checked, value } = event.currentTarget;
 
-const handleInput = (event: FormEvent<HTMLInputElement>) => {
-switch (event) {
-    case value:
-        
+    switch (name) {
+      case 'searchName':
+        setSearchName(value.toLowerCase());
         break;
-
-    default:
+      case 'highABV':
+        setHighABVFilter(checked);
         break;
-}
+      case 'classic':
+        setClassicFilter(checked);
+        break;
+      case 'highAcidity':
+        setHighAcidityFilter(checked);
+        break;
+      default:
+        break;
+    }
+  };
 
- const nameInput = event.currentTarget.value.toLowerCase();
-  setSearchName(nameInput);
-
-
-
-};
-
-const filteredBeers = beers.filter((beer) =>
-beer.name.toLowerCase().includes(searchName)
+  const filteredBeers = loadedBeers.filter((beer) =>
+  beer.name.toLowerCase().includes(searchName) &&
+  (!highABVFilter || beer.abv > 6) &&
+  (!classicFilter || Number(beer.first_brewed) < 2010) &&
+  (!highAcidityFilter || beer.ph < 4)
 );
 
-return (
+  useEffect(() => {
+    getBeer();
+  }, []);
+
+  return (
     <div className='container'>
       <div>
-        <Navbar searchName={searchName} handleInput={handleInput} />
-        
+        <Navbar
+          searchName={searchName}
+          handleInput={handleInput}
+          highABVFilter={highABVFilter}
+          classicFilter={classicFilter}
+          highAcidityFilter={highAcidityFilter}
+        />
       </div>
       <div>
-
-
         <Main filteredBeers={filteredBeers} />
-        {filteredBeers.map((beer) => (
-          <Card
-            key={beer.name}
-            name={beer.name}
-            image_url={beer.image_url}
-            description={beer.description}
-          />
-        ))}
       </div>
     </div>
   );
 }
 
-export default App
+export default App;
