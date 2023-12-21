@@ -1,6 +1,6 @@
 import './Main.scss'
 import Card from '../Card/Card';
-import { Beer } from '../../types/types'; // Adjust the path based on your project structure
+import { Beer } from '../../types/types';
 
 
 type MainProps = {
