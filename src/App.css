@@ -1,9 +1,10 @@
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   height: 100%vh;
-  color: rgb(171, 25, 25);
+  background-color: blueviolet;
+
 }
 
 .navbar {

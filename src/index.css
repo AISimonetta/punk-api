@@ -6,6 +6,8 @@
 body {
     background-color: black;
     padding: 50px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Oxygen', sans-serif;
 }
 
 #root {

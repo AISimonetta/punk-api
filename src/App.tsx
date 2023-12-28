@@ -11,29 +11,29 @@ function App() {
   const [classicFilter, setClassicFilter] = useState(false);
   const [highAcidityFilter, setHighAcidityFilter] = useState(false);
 
-//Function to call  the api 
+//Function to call  the api
   const getBeer = async () => {
     const url = 'https://api.punkapi.com/v2/beers';
     const response = await fetch(url);
     const data: Beer[] = await response.json();
+    console.log('Fetched data:', data)
     setLoadedBeers(data);
   };
 
-//function to handle inputs/states
+//function to handle inputs & states variables
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const { name, checked, value } = event.currentTarget;
-
     switch (name) {
       case 'searchName':
         setSearchName(value.toLowerCase());
         break;
-      case 'highABV':
+      case 'highABVFilter':
         setHighABVFilter(checked);
         break;
-      case 'classic':
+      case 'classicFilter':
         setClassicFilter(checked);
         break;
-      case 'highAcidity':
+      case 'highAcidityFilter':
         setHighAcidityFilter(checked);
         break;
       default:
@@ -41,12 +41,18 @@ function App() {
     }
   };
 
-  const filteredBeers = loadedBeers.filter((beer) =>
-  beer.name.toLowerCase().includes(searchName) &&
-  (!highABVFilter || beer.abv > 6) &&
-  (!classicFilter || Number(beer.first_brewed) < 2010) &&
-  (!highAcidityFilter || beer.ph < 4)
-);
+// function to filter the beers
+const filteredBeers = loadedBeers.filter((beer) => {
+  const brewDate = new Date(beer.first_brewed);
+  const isClassic = brewDate < new Date('01/2010');
+
+  return (
+    beer.name.toLowerCase().includes(searchName) &&
+    (!highABVFilter || beer.abv > 6) &&
+    (!classicFilter || isClassic) &&
+    (!highAcidityFilter || beer.ph < 4)
+  );
+});
 
   useEffect(() => {
     getBeer();

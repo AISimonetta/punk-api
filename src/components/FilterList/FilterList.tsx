@@ -10,7 +10,7 @@ type FilterListProps = {
 };
 
 
-const FilterList = ({ handleInput }: FilterListProps) => {
+const FilterList = ({ handleInput, highABVFilter, classicFilter, highAcidityFilter  }: FilterListProps) => {
   return (
     <div>
 
@@ -21,6 +21,7 @@ const FilterList = ({ handleInput }: FilterListProps) => {
             name="highABVFilter"
             id="highABV"
             onChange={handleInput}
+            checked={highABVFilter}
         />
       </div>
 
@@ -31,6 +32,7 @@ const FilterList = ({ handleInput }: FilterListProps) => {
             name="classicFilter"
             id="classic"
             onChange={handleInput}
+            checked={classicFilter}
         />
       </div>
 
@@ -41,6 +43,7 @@ const FilterList = ({ handleInput }: FilterListProps) => {
             name="highAcidityFilter"
             id="highAcidity"
             onChange={handleInput}
+            checked={highAcidityFilter}
         />
       </div>
 
