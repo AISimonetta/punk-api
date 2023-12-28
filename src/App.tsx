@@ -11,6 +11,8 @@ function App() {
   const [classicFilter, setClassicFilter] = useState(false);
   const [highAcidityFilter, setHighAcidityFilter] = useState(false);
 
+
+
 //Function to call  the api
   const getBeer = async () => {
     const url = 'https://api.punkapi.com/v2/beers';
@@ -43,13 +45,15 @@ function App() {
 
 // function to filter the beers
 const filteredBeers = loadedBeers.filter((beer) => {
-  const brewDate = new Date(beer.first_brewed);
-  const isClassic = brewDate < new Date('01/2010');
+  const [brewMonth, brewYear] = beer.first_brewed.split('/');
+  const brewDate = new Date(parseInt(brewYear, 10), parseInt(brewMonth, 10));
+
+  const january2010 = new Date('01/2010');
 
   return (
     beer.name.toLowerCase().includes(searchName) &&
     (!highABVFilter || beer.abv > 6) &&
-    (!classicFilter || isClassic) &&
+    (!classicFilter || brewDate < january2010) &&
     (!highAcidityFilter || beer.ph < 4)
   );
 });
