@@ -21,7 +21,7 @@ highAcidityFilter,
 }: NavbarProps) => {
 
   return (
-    <div className="navbar">
+    <div className="navbar__container">
 
       <div>
         <SearchBox searchName={searchName} handleInput={handleInput} />

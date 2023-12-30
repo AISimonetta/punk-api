@@ -4,12 +4,7 @@
 }
 
 body {
-    background-color: black;
+    background-color:#f4f4f4;
     padding: 50px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-family: 'Oxygen', sans-serif;
-}
-
-#root {
- background-color: green;
+    font-family: 'Bebas Neue','Oxygen', sans-serif;
 }

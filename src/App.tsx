@@ -12,15 +12,15 @@ function App() {
   const [highAcidityFilter, setHighAcidityFilter] = useState(false);
 
 
-
 //Function to call  the api
   const getBeer = async () => {
-    const url = 'https://api.punkapi.com/v2/beers';
+    const url = 'https://api.punkapi.com/v2/beers?page=2&per_page=80';
     const response = await fetch(url);
     const data: Beer[] = await response.json();
     console.log('Fetched data:', data)
     setLoadedBeers(data);
   };
+
 
 //function to handle inputs & states variables
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
@@ -43,20 +43,15 @@ function App() {
     }
   };
 
-// function to filter the beers
-const filteredBeers = loadedBeers.filter((beer) => {
-  const [brewMonth, brewYear] = beer.first_brewed.split('/');
-  const brewDate = new Date(parseInt(brewYear, 10), parseInt(brewMonth, 10));
 
-  const january2010 = new Date('01/2010');
-
-  return (
-    beer.name.toLowerCase().includes(searchName) &&
-    (!highABVFilter || beer.abv > 6) &&
-    (!classicFilter || brewDate < january2010) &&
-    (!highAcidityFilter || beer.ph < 4)
-  );
-});
+//Function to filter the beers
+const filteredBeers = loadedBeers.filter((beer) =>
+  beer.name.toLowerCase().includes(searchName) &&
+  (!highABVFilter || beer.abv > 6) &&
+// number is converting the first_brewed string into a number, and slice() is removing the first characters .Ex "04/" of 04/2012 to only compare the year.
+  (!classicFilter || Number(beer.first_brewed.slice(3)) < 2010) &&
+  (!highAcidityFilter || beer.ph < 4)
+);
 
   useEffect(() => {
     getBeer();
@@ -64,6 +59,10 @@ const filteredBeers = loadedBeers.filter((beer) => {
 
   return (
     <div className='container'>
+
+        <h1 className='container__h1'>Punk-Api</h1>
+        <h2 className='container__h2'>| Full access to the best craft beers. Find your favourite ! |</h2>
+
       <div className='navbar'>
         <Navbar
           searchName={searchName}
@@ -73,9 +72,11 @@ const filteredBeers = loadedBeers.filter((beer) => {
           highAcidityFilter={highAcidityFilter}
         />
       </div>
+
       <div className='main'>
         <Main filteredBeers={filteredBeers} />
       </div>
+
     </div>
   );
 }
