@@ -15,7 +15,7 @@ const SearchBox = ({ searchName, handleInput }: SearchBoxProps) => {
         value={searchName}
         onChange={handleInput}
         className="searchByName__input"
-        placeholder="Search by name"
+        placeholder=" Search by name"
       />
     </div>
   );

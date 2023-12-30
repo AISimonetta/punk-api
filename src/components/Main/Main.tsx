@@ -10,7 +10,7 @@ type MainProps = {
 //If there are not matching cards to display after the user applied the filters, return <p>No matching results.</p>
 const Main = ({ filteredBeers }: MainProps) => {
   return (
-    <div className='card__container'>
+    <div className='main__container'>
       {filteredBeers.length > 0 ? (
         filteredBeers.map((beer) => (
           <Card
