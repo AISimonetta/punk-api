@@ -1,6 +1,7 @@
 import SearchBox from "../SearchBox/SearchBox";
+import './Navbar.scss'
 import FilterList from "../FilterList/FilterList";
-import { FormEventHandler } from "react";
+import { FormEventHandler, MouseEventHandler } from "react";
 
 
 type NavbarProps = {
@@ -9,8 +10,8 @@ type NavbarProps = {
   highABVFilter: boolean;
   classicFilter: boolean;
   highAcidityFilter: boolean;
+  handleReset: MouseEventHandler<HTMLButtonElement>;
 };
-
 
 const Navbar = ({
 searchName,
@@ -18,6 +19,7 @@ handleInput,
 highABVFilter,
 classicFilter,
 highAcidityFilter,
+handleReset,
 }: NavbarProps) => {
 
   return (
@@ -36,6 +38,9 @@ highAcidityFilter,
         />
       </div>
 
+      <div>
+      <button className="resetBtn" onClick={handleReset}>Reset</button>
+      </div>
     </div>
   );
 };

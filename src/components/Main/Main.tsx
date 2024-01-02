@@ -21,7 +21,7 @@ const Main = ({ filteredBeers }: MainProps) => {
           />
         ))
       ) : (
-        <p>No matching results.</p>
+        <p className='main__noResults'>No matching results.</p>
       )}
     </div>
   );

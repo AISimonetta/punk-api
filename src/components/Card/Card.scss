@@ -4,16 +4,17 @@
     height: 300px;
     display: flex;
     flex-direction:column;
-    float: left;
     align-items: center;
     border-radius: 10px;
     padding: 5px;
-    margin-top: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    box-shadow: 5px 5px 5px 5px #03030325;
+
 
     &__image {
         height: 90%;
         object-fit: cover;
-        padding: 10px 120px;
     }
 
     &__title {
@@ -32,6 +33,7 @@
         text-align: center;
     }
 }
+
 .card__image--container {
     height: 50%;
     width: 90%;
@@ -39,4 +41,18 @@
     background-color: rgba(255, 228, 196, 0.563);
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.zoomed:hover {
+    transform: scale(1.2);
+    background-color: 5px solid black;
+    border: 1px solid none;
+    box-shadow: 15px 15px 15px 15px #03030375;
+    background-color: black;
+    color: white;
+}
+
+.zoomed:hover .card__image--container {
+    background-color: white;
 }

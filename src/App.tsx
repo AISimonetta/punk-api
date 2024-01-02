@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent, useEffect, MouseEventHandler } from 'react';
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import Main from './components/Main/Main'
@@ -13,13 +13,12 @@ function App() {
 
 //Function to call  the api
   const getBeer = async () => {
-    const url = 'https://api.punkapi.com/v2/beers?page=2&per_page=6';
+    const url = 'https://api.punkapi.com/v2/beers?page=2&per_page=80';
     const response = await fetch(url);
     const data: Beer[] = await response.json();
     console.log('Fetched data:', data)
     setLoadedBeers(data);
   };
-
 
 //function to handle inputs & states variables
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
@@ -42,7 +41,6 @@ function App() {
     }
   };
 
-
 //Function to filter the beers
 const filteredBeers = loadedBeers.filter((beer) =>
   beer.name.includes(searchName) &&
@@ -52,9 +50,17 @@ const filteredBeers = loadedBeers.filter((beer) =>
   (!highAcidityFilter || beer.ph < 4)
 );
 
+// Function to reset input values while  pressing rest btn
+const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
+  setSearchName('');
+  setHighABVFilter(false);
+  setClassicFilter(false);
+  setHighAcidityFilter(false);
+};
+
   useEffect(() => {
     getBeer();
-  }, []);
+  }, [searchName, highABVFilter, classicFilter, highAcidityFilter, loadedBeers]);
 
   return (
     <div className='wholePage' >
@@ -67,9 +73,9 @@ const filteredBeers = loadedBeers.filter((beer) =>
               handleInput={handleInput}
               highABVFilter={highABVFilter}
               classicFilter={classicFilter}
-              highAcidityFilter={highAcidityFilter}/>
+              highAcidityFilter={highAcidityFilter}
+              handleReset={handleReset}/>
         </div>
-
         <div className='main'>
           <Main filteredBeers={filteredBeers} />
         </div>
