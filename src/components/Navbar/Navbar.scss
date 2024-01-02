@@ -1,0 +1,21 @@
+.resetBtn {
+background-color: #ede5dc;
+color: black;
+width: 100px;
+border-radius: 10px;
+height: 25px;
+border-color: white;
+outline: none;
+text-align: center;
+margin-left: 50px;
+font-family: "Bebas Neue", "sans-serif";
+letter-spacing: 2px;
+box-shadow: 5px 5px 5px #504f4f75;
+transition: background-color 0.3s, color 0.3s;
+}
+
+.resetBtn:hover {
+background-color: gray;
+color: black;
+color: white;
+}

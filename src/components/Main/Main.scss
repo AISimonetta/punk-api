@@ -1,0 +1,15 @@
+.main__container {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.main__noResults {
+    font-size: 15px;
+    color: gray;
+    letter-spacing: 3px;
+    margin-right: 100px;
+}

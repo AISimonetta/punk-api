@@ -1,3 +1,7 @@
+export type BeerResult = {
+results: Beer[];
+}
+
 export type Beer = {
   id: number;
   name: string;
