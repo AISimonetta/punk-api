@@ -11,14 +11,32 @@ function App() {
   const [classicFilter, setClassicFilter] = useState<boolean>(false);
   const [highAcidityFilter, setHighAcidityFilter] = useState<boolean>(false);
 
-//Function to call  the api
-  const getBeer = async () => {
-    const url = 'https://api.punkapi.com/v2/beers?page=2&per_page=80';
-    const response = await fetch(url);
-    const data: Beer[] = await response.json();
-    console.log('Fetched data:', data)
-    setLoadedBeers(data);
-  };
+  //Function to call  the api and have access to all the beers of the
+const getBeer = async () => {
+  const baseUrl = 'https://api.punkapi.com/v2/beers';
+  let page = 1;
+  const beersPerPage = 80;
+  const allApiBeers = [];
+
+  try {
+    do {
+      const urlWithPagination = `${baseUrl}?page=${page}&per_page=${beersPerPage}`;
+      const response = await fetch(urlWithPagination);
+      const data = await response.json();
+//if there are no more beers to show, it will stop-break the loop.
+      if (data.length === 0) {
+        break;
+      }
+// adding the data array into allApiBeers array .
+      allApiBeers.push(...data);
+      page++;
+    } while (page <= 5);
+  } catch (err) {
+    console.error(`Error, something is wrong ${err}`);
+  }
+  setLoadedBeers(allApiBeers);
+};
+
 
 //function to handle inputs & states variables
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
@@ -68,18 +86,19 @@ const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
 
       <div className='container'>
         <div className='navbar'>
-            <Navbar
-              searchName={searchName}
-              handleInput={handleInput}
-              highABVFilter={highABVFilter}
-              classicFilter={classicFilter}
-              highAcidityFilter={highAcidityFilter}
-              handleReset={handleReset}/>
+          <Navbar
+            searchName={searchName}
+            handleInput={handleInput}
+            highABVFilter={highABVFilter}
+            classicFilter={classicFilter}
+            highAcidityFilter={highAcidityFilter}
+            handleReset={handleReset}/>
         </div>
         <div className='main'>
           <Main filteredBeers={filteredBeers} />
         </div>
       </div>
+
     </div>
   );
 }

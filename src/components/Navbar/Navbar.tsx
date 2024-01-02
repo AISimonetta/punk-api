@@ -39,7 +39,7 @@ handleReset,
       </div>
 
       <div>
-      <button className="resetBtn" onClick={handleReset}>Reset</button>
+        <button className="resetBtn" onClick={handleReset}>Reset</button>
       </div>
     </div>
   );

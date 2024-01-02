@@ -11,7 +11,7 @@ const Card = ({ image_url, name, description }: CardProps) => {
 
     const [zoomIn, setZoomIn] = useState(false);
 
-//function to zoom in and out the cards while the mouse is over them.
+//function to zoom in and out the cards while the mouse is over them. These two functions were needed because there was a shaking bug while hoovering the cards.
     const handleMouseOver= () => {
         setZoomIn(true);
     };
