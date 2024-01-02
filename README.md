@@ -7,6 +7,7 @@ This project was developed during my training at _nology. The aim of this projec
 | HTML | SCSS | Typescript | Javascript | ReactJs |
 
 Punk Api Project Preview :
+
 ![Screenshot 2024-01-02 at 14 19 02](https://github.com/AISimonetta/punk-api/assets/122782260/d2e18d76-eac0-4c69-aab1-dd2a24576ddc)
 
 ✦The structure for this project is as follow :
