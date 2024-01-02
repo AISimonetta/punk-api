@@ -13,11 +13,16 @@ Punk Api Project Preview :
 ✦The structure for this project is as follow :
 
   ∙APP = root component. Here , MAIN and NAV components are called .
+  
     ∙∙NAV =  Component which includes filter and search functionalities with a reset button to restart values. This is done by     
       referencing his children components: 
+      
         ∙∙∙SEARCHBOX: A component for user input that searches the beers by name.
+        
         ∙∙∙FILTERLIST: A component for user input that filters the beers by brew range, alcohol content and ph.
+        
     ∙∙MAIN = Component that renders the filtered cards which displays the beers. This is the parent component of CARD.
+    
         ∙∙∙CARD: A component which display the information about the beers.
 
 ✦CONTACT
