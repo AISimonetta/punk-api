@@ -11,7 +11,7 @@ function App() {
   const [classicFilter, setClassicFilter] = useState<boolean>(false);
   const [highAcidityFilter, setHighAcidityFilter] = useState<boolean>(false);
 
-  //Function to call  the api and have access to all the beers of the
+  //Function to call  the api and have access to all the beers of the api.
 const getBeer = async () => {
   const baseUrl = 'https://api.punkapi.com/v2/beers';
   let page = 1;
