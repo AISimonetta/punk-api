@@ -1,7 +1,9 @@
 ✦Punk-Api Project✦
+
 This project was developed during my training at _nology. The aim of this project was to retrieve informtation from the PUNK-API => https://punkapi.com/documentation/v2. Beers can be filtered using different information as requiered such as name, brew range, alcohol content and ph.
 
 ✦Technologies used:
+
 | HTML | SCSS | Typescript | Javascript | ReactJs |
 
 Punk Api Project Preview :
