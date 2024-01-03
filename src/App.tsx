@@ -38,7 +38,7 @@ const getBeer = async () => {
 };
 
 
-//function to handle inputs & states variables
+//function to handle events in all my inputs
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const { name, checked, value } = event.currentTarget;
     switch (name) {
@@ -59,7 +59,8 @@ const getBeer = async () => {
     }
   };
 
-//Function to filter the beers
+//Function to filter the beers and check if they match the condition
+//based in the user input and the filters that the user selected.
 const filteredBeers = loadedBeers.filter((beer) =>
   beer.name.includes(searchName) &&
   (!highABVFilter || beer.abv > 6) &&
@@ -68,7 +69,7 @@ const filteredBeers = loadedBeers.filter((beer) =>
   (!highAcidityFilter || beer.ph < 4)
 );
 
-// Function to reset input values while  pressing rest btn
+// Function to reset input values when pressing the reset btn
 const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
   setSearchName('');
   setHighABVFilter(false);
@@ -76,6 +77,9 @@ const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
   setHighAcidityFilter(false);
 };
 
+// useEffect fetches the data from the api by the getBeer() function.
+// if any of the state variables of the dependency array changes,
+//it will call the function for an update.
   useEffect(() => {
     getBeer();
   }, [searchName, highABVFilter, classicFilter, highAcidityFilter, loadedBeers]);
