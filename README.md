@@ -1,6 +1,6 @@
 ✦Punk-Api Project✦
 
-This project was developed during my training at _nology. The aim of this project was to retrieve information from the PUNK-API => https://punkapi.com/documentation/v2. Beers can be filtered using different information as requiered such as name, brew range, alcohol content and ph.
+Dive into my project developed during my training at _nology, where the focal point was to fetch information from the PUNK-API (https://punkapi.com/documentation/v2). This dynamic project empowers users to filter beers based on various criteria such as name, brew range, alcohol content, and pH.
 
 ✦Technologies used:
 
@@ -14,17 +14,22 @@ This project was developed during my training at _nology. The aim of this projec
 
   ∙APP = root component. Here , MAIN and NAV components are called .
   
-    ∙∙NAV =  Component which includes filter and search functionalities with a reset button to restart values. This is done by     
-      referencing his children components: 
+    ∙∙NAV =  This component includes filter and search functionalities, accompanied by a reset button to restart values. It references its child     components:
       
         ∙∙∙SEARCHBOX: A component for user input that searches the beers by name.
         
         ∙∙∙FILTERLIST: A component for user input that filters the beers by brew range, alcohol content and ph.
         
-    ∙∙MAIN = Component that renders the filtered cards which displays the beers. This is the parent component of CARD.
+    ∙∙MAIN = This component renders the filtered cards displaying information about the beers. It serves as the parent component of CARD.
     
         ∙∙∙CARD: A component which display the information about the beers.
 
-✦CONTACT
+✦ Setup Instructions:
 
-If you have any question,feedback or contribution for this project please get in touch.
+To explore this project, kindly follow these instructions:
+
+Clone this repository to your local machine and open the index.html file in a web browser. Alternatively, visit the deployed live version: https://aisimonetta.github.io/punk-api/
+
+✦ Contact:
+
+For any inquiries, feedback, or contributions to this project, please don't hesitate to get in touch. Your engagement is highly appreciated!
