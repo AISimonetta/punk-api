@@ -1,6 +1,6 @@
 ✦Punk-Api Project✦
 
-Dive into my project developed during my training at _nology, where the focal point was to fetch information from the PUNK-API (https://punkapi.com/documentation/v2). This dynamic project empowers users to filter beers based on various criteria such as name, brew range, alcohol content, and pH.
+Dive into my project developed during my training at _nology, where the focal point was to fetch information from the PUNK-API (https://punkapi.com/documentation/v2). This dynamic project allows users to filter beers based on various criteria such as name, brew range, alcohol content, and pH.
 
 ✦Technologies used:
 
