@@ -60,14 +60,14 @@ const getBeer = async () => {
   };
 
 //Function to filter the beers and check if they match the condition
-//based in the user input and the filters that the user selected.
-const filteredBeers = loadedBeers.filter((beer) =>
-  beer.name.includes(searchName) &&
-  (!highABVFilter || beer.abv > 6) &&
-// Number is converting the first_brewed string into a number, and slice() is removing the first characters .Ex "04/" of 04/2012 to only compare the years.
-  (!classicFilter || Number(beer.first_brewed.slice(3)) < 2010) &&
-  (!highAcidityFilter || beer.ph < 4)
-);
+const filteredBeers = loadedBeers.filter(beer => {
+  const hasSearchName = beer.name.toLowerCase().includes(searchName);
+  const passesABVFilter = !highABVFilter || beer.abv > 6;
+  const passesAcidityFilter = !highAcidityFilter || beer.ph < 4;
+  const firstBrewedYear = Number(beer.first_brewed.slice(3));
+  const passesClassicFilter = !classicFilter || firstBrewedYear < 2010;
+  return hasSearchName && passesABVFilter && passesClassicFilter && passesAcidityFilter;
+});
 
 // Function to reset input values when pressing the reset btn
 const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
@@ -78,11 +78,10 @@ const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
 };
 
 // useEffect fetches the data from the api by the getBeer() function.
-// if any of the state variables of the dependency array changes,
-//it will call the function for an update.
+
   useEffect(() => {
     getBeer();
-  }, [searchName, highABVFilter, classicFilter, highAcidityFilter, loadedBeers]);
+  }, []);
 
   return (
     <div className='wholePage' >
