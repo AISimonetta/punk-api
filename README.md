@@ -6,7 +6,7 @@ Dive into my project developed during my training at _nology, where the focal po
 ► Technologies used:
 ---
 
-| HTML | SCSS | Typescript | Javascript | ReactJs |
+| HTML | SCSS | Typescript | JavaScript | React |
 
 ► Punk Api Project Preview:
 ---
